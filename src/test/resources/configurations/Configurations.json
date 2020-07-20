@@ -1,0 +1,15 @@
+{
+  "dev1": {
+    "url": "https://jsonplaceholder.typicode.com"
+  },
+  "dev2": {
+    "url": "https://jsonplaceholder.typicode.com"
+  },
+  "uat": {
+    "url": "https://jsonplaceholder.typicode.com"
+  },
+  "prod": {
+    "url": "https://jsonplaceholder.typicode.com"
+  }
+
+}
