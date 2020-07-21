@@ -10,9 +10,9 @@ workflows:
         executor:
           name: Excution
         steps:
-          -  maven/test:
-            - steps:
+          -maven/test:
+              -steps:
               -run: mvn clean
-            - run: mvn clean test
+            -run: mvn clean test
            
           
