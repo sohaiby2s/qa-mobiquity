@@ -2,17 +2,15 @@ version: 2.1
 
 orbs:
   maven: circleci/maven@0.0.12
-
-workflows:
-  maven_test:
-    jobs:
-      build:
-        executor:
-          name: Excution
-        steps:
-          -maven/test:
-              -steps:
-              -run: mvn clean
-            -run: mvn clean test
-           
+jobs:
+  build:
+    executor:
+      name: execution
+      tag: '10.4'
+    steps:
+      - checkout
+      - maven/test:
+          steps:
+            - run: mvn clean
+      - run: mvn test
           
