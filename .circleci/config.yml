@@ -9,7 +9,7 @@ jobs:
 
     steps:
 
-      - checkout: 'https://github.com/sohaiby2s/qa-mobiquity.git'
+      - checkout
 
       - restore_cache:
           
@@ -29,4 +29,3 @@ jobs:
       
       - store_artifacts:
           path: target/cucumber-JVM-reports/cucumber-html-reports
-   
