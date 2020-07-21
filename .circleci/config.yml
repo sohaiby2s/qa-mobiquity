@@ -5,7 +5,7 @@ orbs:
 
 workflows:
     maven_test:
-    jobs:
-      - maven/test:
-          command: 'clean test -Denv=${env}'
+      jobs:
+        - maven/test:
+            command: 'clean test -Denv=${env}'
           
