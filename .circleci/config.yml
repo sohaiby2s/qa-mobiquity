@@ -6,7 +6,14 @@ orbs:
 workflows:
   maven_test:
     jobs:
-      - maven/test:
-          command: 'clean test'
+      build:
+        executor:
+          name: Excution
+        steps:
+          - checkout
+          -  maven/test:
+            - steps:
+              -run: mvn clean
+            - run: mvn clean test
            
           
