@@ -13,4 +13,3 @@ workflows:
           - maven/test:
             steps:
               - run: mvn clean
-        - run: mvn clean test
