@@ -8,3 +8,6 @@ workflows:
     jobs:
       - maven/test:
           command: 'clean test -Denv=${env}'
+steps:
+ - store_artifacts:
+        path: .circleci/tests/
