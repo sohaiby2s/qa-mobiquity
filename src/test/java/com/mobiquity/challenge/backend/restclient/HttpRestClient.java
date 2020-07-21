@@ -18,6 +18,7 @@ public class HttpRestClient {
     private RequestSpecification requestSpecification;
 
     public HttpRestClient() {
+
         RestAssured.baseURI = ConfigReader.API_URL;
         requestSpecification = RestAssured.given();
     }
@@ -32,7 +33,7 @@ public class HttpRestClient {
 
     public Response sendHttpRequest(Method method, String endpoint) {
         Response response = requestSpecification.request(method, endpoint);
-        commonContext.setResponseBody(response.getBody().jsonPath());
+        commonContext.setResponseBody(response.getBody());
         commonContext.setStatusCode(response.getStatusCode());
         return response;
     }
