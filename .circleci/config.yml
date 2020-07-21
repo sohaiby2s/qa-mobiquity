@@ -3,9 +3,9 @@ version: 2.1
 orbs:
   maven: circleci/maven@0.0.12
 
-deployment:
-  main:
-    branch: master
-    commands:
-      - mvn clean test
-    
+workflows:
+  maven_test:
+    jobs:
+      - maven/test:
+          command: '-Denv=dev1'
+  
