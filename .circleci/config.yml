@@ -6,12 +6,7 @@ orbs:
 workflows:
     maven_test:
       jobs:
-        - maven/test:
-            commands:
-              command: |
-                mkdir -p ~/cucumber
-                bundle exec cucumber --format pretty --format json --out ~/cucumber/tests.cucumber
-              test_results_path: ~/cucumber
-              command: 'clean test -Denv=${env}'
+        - maven/test
+            command: 'clean test -Denv=${env}'
            
           
