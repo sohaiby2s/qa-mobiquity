@@ -4,9 +4,19 @@ orbs:
   maven: circleci/maven@0.0.12
 
 workflows:
-  maven_test:
+  workflows:
+    maven_test:
     jobs:
-      test:
-        steps:
-          - checkout
-          - run: mvn clean test -Denv=${env}
+      - maven/test:
+          command: 'clean test -Denv=${env}'
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/cucumber
+            bundle exec cucumber --format junit --out ~/cucumber/junit.xml
+          when: always
+      - store_test_results:
+          path: ~/cucumber
+      - store_artifacts:
+          path: ~/cucumber
+          
