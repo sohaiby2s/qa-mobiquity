@@ -8,6 +8,6 @@ workflows:
     jobs:
       - maven/test:
           command: 'clean test -Denv=${env}'
-    steps:      
-      - store_test_results:
-          path: ~/test-results
+steps:      
+    - store_test_results:
+            path: ~/test-results
