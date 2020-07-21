@@ -1,16 +1,14 @@
 version: 2.1
-
 orbs:
   maven: circleci/maven@0.0.12
 jobs:
   build:
     executor:
-      name: execution
+      name: node/default
       tag: '10.4'
     steps:
       - checkout
       - maven/test:
           steps:
             - run: mvn clean
-      - run: mvn test
-          
+      - run: mvn clean test
