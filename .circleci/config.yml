@@ -5,5 +5,7 @@ orbs:
 
 workflows:
   maven_test:
-    goals: clean test
+    jobs:
+      - maven/test:
+            command: '-X verify'
     
