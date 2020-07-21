@@ -1,12 +1,31 @@
-version: 2.1
+version: 2
+jobs:
+  build:
+    
+    working_directory: ~/circleci-qa-mobiquity
 
-orbs:
-  maven: circleci/maven@0.0.12
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
 
-workflows:
-  maven_test:
-    jobs:
-      - maven/test:
-          command: 'clean test'
-           
+    steps:
+
+      - checkout
+
+      - restore_cache:
           
+          key: circleci-qa-mobiquity-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: circleci-qa-mobiquity-{{ checksum "pom.xml" }}
+      
+      - run: mvn clean test
+      
+      - store_test_results:
+          path: target/cucumber-JVM-reports/cucumber-html-reports
+      
+      - store_artifacts:
+          path: target/cucumber-JVM-reports/cucumber-html-reports
