@@ -8,3 +8,7 @@ workflows:
     jobs:
       - maven/test:
           command: 'clean test -Denv=${env}'
+          
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
+    - bundle exec cucumber --format junit --out $CIRCLE_TEST_REPORTS/cucumber/junit.xml
