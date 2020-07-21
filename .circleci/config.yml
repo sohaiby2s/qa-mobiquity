@@ -10,7 +10,7 @@ workflows:
         executor:
           name: Excution
         steps:
-          - checkout
+          -  checkout
           -  maven/test:
             - steps:
               -run: mvn clean
