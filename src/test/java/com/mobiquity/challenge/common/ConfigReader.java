@@ -16,7 +16,7 @@ public class ConfigReader {
     public static JsonNode getConfigReader() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            jsonNode = objectMapper.readTree(new File("src/test/resources/configuration/configurations.json"));
+            jsonNode = objectMapper.readTree(new File("src/test/resources/configurations/configurations.json"));
             jsonNode = jsonNode.get(getEnv());
         } catch (IOException e) {
             e.printStackTrace();
