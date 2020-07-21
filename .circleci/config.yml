@@ -9,7 +9,7 @@ jobs:
 
     steps:
 
-      - checkout: https://github.com/sohaiby2s/qa-mobiquity.git
+      - checkout: 'https://github.com/sohaiby2s/qa-mobiquity.git'
 
       - restore_cache:
           
