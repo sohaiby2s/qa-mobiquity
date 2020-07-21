@@ -7,10 +7,11 @@ workflows:
     maven_test:
       jobs:
         - maven/test:
-            command: |
-              mkdir -p ~/cucumber
-              bundle exec cucumber --format pretty --format json --out ~/cucumber/tests.cucumber
-            test_results_path: ~/cucumber
-            command: 'clean test -Denv=${env}'
+            commands:
+              command: |
+                mkdir -p ~/cucumber
+                bundle exec cucumber --format pretty --format json --out ~/cucumber/tests.cucumber
+              test_results_path: ~/cucumber
+              command: 'clean test -Denv=${env}'
            
           
