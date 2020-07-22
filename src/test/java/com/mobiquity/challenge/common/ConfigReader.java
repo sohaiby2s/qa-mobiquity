@@ -13,6 +13,9 @@ public class ConfigReader {
 
     private static JsonNode jsonNode;
 
+    private ConfigReader() {
+    }
+
     public static JsonNode getConfigReader() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -26,7 +29,7 @@ public class ConfigReader {
 
 
     public static String getEnv() {
-        return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env") ;
+        return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env");
     }
 
 }

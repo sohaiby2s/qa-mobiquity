@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiquity.challenge.backend.model.Comment;
+import com.mobiquity.challenge.backend.model.Post;
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
 import io.restassured.http.Method;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CommentContext {
-
-    private static final String COMMENTS = "/comments";
+public class CommentContext extends CommonContext {
 
     private List<Comment> comments;
 
@@ -25,43 +24,22 @@ public class CommentContext {
     @Autowired
     private PostsContext postsContext;
 
-    @Autowired
-    private CommonContext commonContext;
-
-    public void gatherCommentsData(){
-        for(int id:postsContext.getPostIds()){
-            callGetCommentApi(id);
-            setComments();
-        }
+    public void parseJsonResponseOfComments() throws JsonProcessingException {
+        comments = mapFromJsonList(httpRestClient.getResponseBody().asString(), Comment.class);
     }
 
-    private void setComments(){
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            comments = objectMapper.readValue(commonContext.getResponseBody().asString(), new TypeReference<List<Comment>>() {});
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean checkEmailAddressFormat(){
+    public boolean checkEmailAddressFormat() {
         List<String> emailAddressList = getEmailAddress();
-        for(String email: emailAddressList){
-            if(!commonContext.checkEmailFormat(email)){
+        for (String email : emailAddressList) {
+            if (!checkEmailFormat(email)) {
                 return false;
             }
         }
         return true;
     }
 
-
-    public List<String> getEmailAddress(){
-      return comments.stream().map(Comment::getEmail).collect(Collectors.toList());
+    public List<String> getEmailAddress() {
+        return comments.stream().map(Comment::getEmail).collect(Collectors.toList());
     }
 
-
-    public void callGetCommentApi(int postId){
-        httpRestClient.sendHttpRequest(Method.GET, COMMENTS +"?postId="+postId);
-    }
 }

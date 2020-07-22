@@ -1,26 +1,30 @@
 package com.mobiquity.challenge.backend.restclient;
 
-import com.mobiquity.challenge.backend.context.CommonContext;
 import com.mobiquity.challenge.common.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HttpRestClient {
 
-    @Autowired
-    private CommonContext commonContext;
-
     private RequestSpecification requestSpecification;
+    private ResponseBody responseBody;
+    private Integer statusCode;
 
     public HttpRestClient() {
 
         RestAssured.baseURI = ConfigReader.API_URL;
         requestSpecification = RestAssured.given();
+    }
+
+    public void sendHttpRequest(Method method, String endpoint) {
+        Response response = requestSpecification.request(method, endpoint);
+        setResponseBody(response.getBody());
+        setStatusCode(response.getStatusCode());
     }
 
     public void setBody(Object body) {
@@ -31,11 +35,20 @@ public class HttpRestClient {
         requestSpecification.header(header, value);
     }
 
-    public Response sendHttpRequest(Method method, String endpoint) {
-        Response response = requestSpecification.request(method, endpoint);
-        commonContext.setResponseBody(response.getBody());
-        commonContext.setStatusCode(response.getStatusCode());
-        return response;
+    public ResponseBody getResponseBody() {
+        return responseBody;
+    }
+
+    private void setResponseBody(ResponseBody responseBody) {
+        this.responseBody = responseBody;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    private void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
 }
