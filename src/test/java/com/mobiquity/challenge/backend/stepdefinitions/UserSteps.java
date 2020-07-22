@@ -3,7 +3,6 @@ package com.mobiquity.challenge.backend.stepdefinitions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mobiquity.challenge.backend.context.UserContext;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;

@@ -1,12 +1,8 @@
 package com.mobiquity.challenge.backend.context;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiquity.challenge.backend.model.Comment;
-import com.mobiquity.challenge.backend.model.Post;
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
-import io.restassured.http.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
