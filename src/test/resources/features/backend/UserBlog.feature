@@ -1,8 +1,29 @@
-Feature: User
+@test
+Feature: UserBlog
+
+  As a blog user
+  I want to fetch comments on each posts
+  So that I can check that email addresses are in proper format
 
   Scenario: Validate api response when user calls the users endpoint
     When Client calls the "GET" method of "/users" endpoint
     Then Response code 200 is returned
+
+  Scenario: Validate api response when user calls the posts endpoint
+    When Client calls the "GET" method of "/posts" endpoint
+    Then Response code 200 is returned
+
+  Scenario: Validate api response when user calls the posts endpoint
+    When Client calls the "GET" method of "/comments" endpoint
+    Then Response code 200 is returned
+
+  Scenario: Validate api response when user calls the endpoint which does not exist
+    When Client calls the "GET" method of "/test" endpoint
+    Then Response code 404 is returned
+
+  Scenario: Validate api response when user provides wrong value in parameter
+    When Client calls the "GET" method of "/posts?userId=12355" endpoint
+    Then Api should return empty response
 
   Scenario: Validate that a user is found in users data
     Given Client calls the "GET" method of "/users" endpoint

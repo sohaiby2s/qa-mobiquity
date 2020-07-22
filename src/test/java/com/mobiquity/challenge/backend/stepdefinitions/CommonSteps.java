@@ -4,8 +4,6 @@ import com.mobiquity.challenge.backend.restclient.HttpRestClient;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,6 +22,11 @@ public class CommonSteps {
     public void responseCodeIsReturned(Integer statusCode) {
         Assert.assertEquals("Response status code is not " + statusCode,
                 statusCode, httpRestClient.getStatusCode());
+    }
+
+    @Then("Api should return empty response")
+    public void apiShouldReturnEmptyList() {
+        Assert.assertEquals("Api response is not empty", httpRestClient.getResponseBody().asString(), "[]");
     }
 
 }
