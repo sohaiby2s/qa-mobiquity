@@ -13,7 +13,7 @@ public class ConfigReader {
 
     private static JsonNode jsonNode;
 
-    private ConfigReader(){
+    private ConfigReader() {
     }
 
     public static JsonNode getConfigReader() {
@@ -29,7 +29,7 @@ public class ConfigReader {
 
 
     public static String getEnv() {
-        return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env") ;
+        return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env");
     }
 
 }
