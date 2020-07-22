@@ -26,4 +26,5 @@ public class UserSteps {
     public void userGetsTheIdOfAUser(String userName){
         userContext.setUserId(userName);
     }
+
 }

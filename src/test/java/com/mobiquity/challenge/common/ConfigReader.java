@@ -13,6 +13,9 @@ public class ConfigReader {
 
     private static JsonNode jsonNode;
 
+    private ConfigReader(){
+    }
+
     public static JsonNode getConfigReader() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {

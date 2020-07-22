@@ -1,7 +1,6 @@
 package com.mobiquity.challenge.backend.context;
 
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiquity.challenge.backend.model.User;
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

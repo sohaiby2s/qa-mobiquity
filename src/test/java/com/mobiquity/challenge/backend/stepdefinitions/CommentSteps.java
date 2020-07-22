@@ -1,8 +1,6 @@
 package com.mobiquity.challenge.backend.stepdefinitions;
 
 import com.mobiquity.challenge.backend.context.CommentContext;
-import com.mobiquity.challenge.backend.context.CommonContext;
-import com.mobiquity.challenge.backend.restclient.HttpRestClient;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -22,4 +20,5 @@ public class CommentSteps {
     public void emailAddressOnEachCommentShouldBeInProperFormat(){
         Assert.assertTrue("Email Address is not in proper format",commentContext.checkEmailAddressFormat());
     }
+
 }

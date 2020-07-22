@@ -55,13 +55,12 @@ public class CommentContext {
         return true;
     }
 
-
     public List<String> getEmailAddress(){
       return comments.stream().map(Comment::getEmail).collect(Collectors.toList());
     }
 
-
     public void callGetCommentApi(int postId){
         httpRestClient.sendHttpRequest(Method.GET, COMMENTS +"?postId="+postId);
     }
+
 }
