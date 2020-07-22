@@ -27,7 +27,6 @@ public class ConfigReader {
         return jsonNode;
     }
 
-
     public static String getEnv() {
         return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env");
     }

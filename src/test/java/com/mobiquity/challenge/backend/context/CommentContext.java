@@ -17,25 +17,13 @@ public class CommentContext extends CommonContext {
     @Autowired
     private HttpRestClient httpRestClient;
 
-    @Autowired
-    private PostsContext postsContext;
-
     public void parseJsonResponseOfComments() throws JsonProcessingException {
         comments = mapFromJsonList(httpRestClient.getResponseBody().asString(), Comment.class);
     }
 
-    public boolean checkEmailAddressFormat() {
-        List<String> emailAddressList = getEmailAddress();
-        for (String email : emailAddressList) {
-            if (!checkEmailFormat(email)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public List<String> getEmailAddress() {
-        return comments.stream().map(Comment::getEmail).collect(Collectors.toList());
+        return comments.stream().map(Comment::getEmail).filter(email -> !checkEmailFormat(email)).
+                collect(Collectors.toList());
     }
 
 }

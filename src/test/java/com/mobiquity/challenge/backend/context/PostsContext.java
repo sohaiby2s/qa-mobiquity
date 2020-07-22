@@ -18,9 +18,6 @@ public class PostsContext extends CommonContext {
     @Autowired
     private HttpRestClient httpRestClient;
 
-    @Autowired
-    private UserContext userContext;
-
 
     public void parseJsonResponseOfPosts() throws JsonProcessingException {
         posts = mapFromJsonList(httpRestClient.getResponseBody().asString(), Post.class);

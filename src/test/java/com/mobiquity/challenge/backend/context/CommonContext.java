@@ -11,9 +11,6 @@ import java.util.List;
 
 public abstract class CommonContext {
 
-    @Autowired
-    private HttpRestClient httpRestClient;
-
     protected final <T> T mapFromJson(String json, Class<T> className) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

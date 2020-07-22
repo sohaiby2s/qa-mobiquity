@@ -32,8 +32,8 @@ public class CommentSteps {
 
     @Then("Email address on each comment should be in proper format")
     public void emailAddressOnEachCommentShouldBeInProperFormat() {
-        Assert.assertTrue("Email Address is not in proper format", commentContext.checkEmailAddressFormat());
+        Assert.assertTrue("Email Addresses are not in proper format: "+commentContext.getEmailAddress(),
+                commentContext.getEmailAddress().isEmpty());
     }
-
 
 }
