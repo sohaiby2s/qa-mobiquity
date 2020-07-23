@@ -1,4 +1,3 @@
-@test
 Feature: UserBlog
 
   As a blog user

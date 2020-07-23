@@ -29,6 +29,7 @@ public class ConfigReader {
         }
         return jsonNode;
     }
+
     /**
      * This methods gets the environment value from the environmental variables which defaults to dev1
      */

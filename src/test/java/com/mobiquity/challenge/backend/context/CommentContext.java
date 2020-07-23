@@ -31,6 +31,7 @@ public class CommentContext extends CommonContext {
     public void parseJsonResponseOfComments() throws JsonProcessingException {
         comments.addAll(mapFromJsonList(httpRestClient.getResponseBody().asString(), Comment.class));
     }
+
     /**
      * This method is used for fetching all the email addresses form comments
      */

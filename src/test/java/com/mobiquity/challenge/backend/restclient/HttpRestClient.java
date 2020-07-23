@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
  * HttpRestClient is use to call Rest Api and perform all the functions
  * specifically relating to the API requests and responses
  */
+
 @Component
 public class HttpRestClient {
 
