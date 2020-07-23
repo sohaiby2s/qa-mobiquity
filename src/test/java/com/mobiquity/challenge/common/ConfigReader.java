@@ -7,6 +7,9 @@ import org.springframework.util.StringUtils;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * ConfigParser parse the configuration file and pass configuration properties to required functionalities
+ */
 public class ConfigReader {
 
     public static final String API_URL = getConfigReader().get("url").asText();
@@ -26,7 +29,9 @@ public class ConfigReader {
         }
         return jsonNode;
     }
-
+    /**
+     * This methods gets the environment value from the environmental variables which defaults to dev1
+     */
     public static String getEnv() {
         return StringUtils.isEmpty(System.getProperty("env")) ? "dev1" : System.getProperty("env");
     }

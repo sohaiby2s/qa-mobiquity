@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The CommentContext class holds the functionality
+ * specifically relating to the Comment endpoint
+ */
+
 @Component
 public class CommentContext extends CommonContext {
 
@@ -18,10 +23,17 @@ public class CommentContext extends CommonContext {
     @Autowired
     private HttpRestClient httpRestClient;
 
+    /**
+     * This method is used to parse JSON string receiving as an API response
+     * and map it on the Comment.class as List and append it into the comments
+     */
+
     public void parseJsonResponseOfComments() throws JsonProcessingException {
         comments.addAll(mapFromJsonList(httpRestClient.getResponseBody().asString(), Comment.class));
     }
-
+    /**
+     * This method is used for fetching all the email addresses form comments
+     */
     public List<String> getEmailAddress() {
         return comments.stream().map(Comment::getEmail).filter(email -> !checkEmailFormat(email)).
                 collect(Collectors.toList());

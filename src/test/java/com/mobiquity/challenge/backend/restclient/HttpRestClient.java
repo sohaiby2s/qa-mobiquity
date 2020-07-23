@@ -8,6 +8,10 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.stereotype.Component;
 
+/**
+ * HttpRestClient is use to call Rest Api and perform all the functions
+ * specifically relating to the API requests and responses
+ */
 @Component
 public class HttpRestClient {
 
@@ -23,6 +27,9 @@ public class HttpRestClient {
         requestSpecification = RestAssured.given();
     }
 
+    /**
+     * This method calls the Rest API
+     */
     public void sendHttpRequest(Method method, String endpoint) {
         Response response = requestSpecification.request(method, endpoint);
         setResponseBody(response.getBody());
