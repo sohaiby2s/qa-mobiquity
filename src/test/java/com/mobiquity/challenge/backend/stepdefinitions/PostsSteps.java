@@ -33,9 +33,11 @@ public class PostsSteps {
         postsContext.gathersPostId();
     }
 
-    @And("Client calls the {string} method of {string} endpoint by appending user id as parameter")
-    public void clientCallsTheMethodOfEndPointByAppendingUserIdAsParameter(String method, String endPoint) {
-        httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint + "?userId=" + userContext.getUserId());
+    @And("Client calls the {string} method of {string} endpoint by appending {string} as parameter")
+    public void clientCallsTheMethodOfEndPointByAppendingUserIdAsParameter(String method, String endPoint, String parameterValue) {
+        httpRestClient.initRestAPI();
+        httpRestClient.setQueryParam(parameterValue, String.valueOf(userContext.getUserId()));
+        httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint);
     }
 
 }

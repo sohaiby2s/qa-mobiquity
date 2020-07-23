@@ -22,18 +22,20 @@ public class CommentSteps {
     @Autowired
     private HttpRestClient httpRestClient;
 
-    @And("Client calls the {string} method of {string} endpoint by appending each post id as parameter")
-    public void clientCallsTheMethodOfEndPointByAppendPosts(String method, String endPoint) throws JsonProcessingException {
+    @And("Client calls the {string} method of {string} endpoint by appending each {string} as parameter")
+    public void clientCallsTheMethodOfEndPointByAppendPosts(String method, String endPoint, String paramValue) throws JsonProcessingException {
         for (int id : postsContext.getPostIds()) {
-            httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint + "?postId=" + id);
+            httpRestClient.initRestAPI();
+            httpRestClient.setQueryParam(paramValue, id);
+            httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint);
             commentContext.parseJsonResponseOfComments();
         }
     }
 
     @Then("Email address on each comment should be in proper format")
     public void emailAddressOnEachCommentShouldBeInProperFormat() {
-        Assert.assertTrue("Email Address is not in proper format", commentContext.checkEmailAddressFormat());
+        Assert.assertTrue("Email Addresses are not in proper format: " + commentContext.getEmailAddress(),
+                commentContext.getEmailAddress().isEmpty());
     }
-
 
 }

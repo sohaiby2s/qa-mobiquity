@@ -15,6 +15,7 @@ public class CommonSteps {
 
     @Given("Client calls the {string} method of {string} endpoint")
     public void clientCallsTheEndPoint(String method, String endpoint) {
+        httpRestClient.initRestAPI();
         httpRestClient.sendHttpRequest(Method.valueOf(method), endpoint);
     }
 

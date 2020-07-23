@@ -3,16 +3,11 @@ package com.mobiquity.challenge.backend.context;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mobiquity.challenge.backend.restclient.HttpRestClient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 
 public abstract class CommonContext {
-
-    @Autowired
-    private HttpRestClient httpRestClient;
 
     protected final <T> T mapFromJson(String json, Class<T> className) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -27,7 +22,7 @@ public abstract class CommonContext {
     }
 
     public Boolean checkEmailFormat(String email) {
-        String emailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String emailRegex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(emailRegex);
     }
 

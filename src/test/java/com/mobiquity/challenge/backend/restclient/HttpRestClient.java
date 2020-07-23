@@ -16,8 +16,10 @@ public class HttpRestClient {
     private Integer statusCode;
 
     public HttpRestClient() {
-
         RestAssured.baseURI = ConfigReader.API_URL;
+    }
+
+    public void initRestAPI() {
         requestSpecification = RestAssured.given();
     }
 
@@ -29,6 +31,10 @@ public class HttpRestClient {
 
     public void setBody(Object body) {
         requestSpecification.body(body);
+    }
+
+    public void setQueryParam(String key, Object value) {
+        requestSpecification.queryParam(key, value);
     }
 
     public void addHeader(String header, String value) {
