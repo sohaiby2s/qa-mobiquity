@@ -1,4 +1,4 @@
-
+@test
 Feature: UserBlog
 
   As a blog user
@@ -30,19 +30,20 @@ Feature: UserBlog
     And User gets the JSON response from user list
     Then "Delphine" user name found in user list
 
+
   Scenario: Validate the count of user's posts
     Given Client calls the "GET" method of "/users" endpoint
     And User gets the JSON response from user list
-    When User fetch the user id of user "Delphine" from user list
-    And Client calls the "GET" method of "/posts" endpoint by appending user id as parameter
+    When User fetch the id of user "Delphine" from user list
+    And Client calls the "GET" method of "/posts" endpoint by appending "userId" as parameter
     And User collects all posts against the user id from the JSON response
     Then Count of user's post should be 10
-  @test
+
   Scenario: Validate email address format on comments of each post
     Given Client calls the "GET" method of "/users" endpoint
     And User gets the JSON response from user list
-    When User fetch the user id of user "Delphine" from user list
-    And Client calls the "GET" method of "/posts" endpoint by appending user id as parameter
+    When User fetch the id of user "Delphine" from user list
+    And Client calls the "GET" method of "/posts" endpoint by appending "userId" as parameter
     And User collects all posts against the user id from the JSON response
-    And Client calls the "GET" method of "/comments" endpoint by appending each post id as parameter
+    And Client calls the "GET" method of "/comments" endpoint by appending each "postId" as parameter
     Then Email address on each comment should be in proper format

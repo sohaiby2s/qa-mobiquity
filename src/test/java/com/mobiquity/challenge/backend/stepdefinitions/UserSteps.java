@@ -19,7 +19,7 @@ public class UserSteps {
         Assert.assertTrue(userName + " is not found in user data", userContext.isUserFound(userName));
     }
 
-    @And("User fetch the user id of user {string} from user list")
+    @And("User fetch the id of user {string} from user list")
     public void userGetsTheIdOfAUser(String userName) {
         userContext.setUserId(userName);
     }

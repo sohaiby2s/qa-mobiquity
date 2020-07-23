@@ -14,29 +14,28 @@ public class HttpRestClient {
     private RequestSpecification requestSpecification;
     private ResponseBody responseBody;
     private Integer statusCode;
-    private Response response;
 
     public HttpRestClient() {
         RestAssured.baseURI = ConfigReader.API_URL;
     }
 
-    public void sendHttpRequest(Method method, String endpoint) {
-
+    public void initRestAPI() {
         requestSpecification = RestAssured.given();
-        response = requestSpecification.request(method, endpoint);
+    }
+
+    public void sendHttpRequest(Method method, String endpoint) {
+        Response response = requestSpecification.request(method, endpoint);
         setResponseBody(response.getBody());
         setStatusCode(response.getStatusCode());
-
     }
 
     public void setBody(Object body) {
         requestSpecification.body(body);
     }
 
-    public void setPathParam(String key, Object value){
-        requestSpecification.pathParam(key,value);
+    public void setQueryParam(String key, Object value) {
+        requestSpecification.queryParam(key, value);
     }
-
 
     public void addHeader(String header, String value) {
         requestSpecification.header(header, value);
