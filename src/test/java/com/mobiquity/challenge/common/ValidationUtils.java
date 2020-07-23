@@ -19,6 +19,9 @@ public final class ValidationUtils {
         return email.matches(EMAIL_VALIDATION_REGEX);
     }
 
+    /**
+     * This is method is used for checking the response body
+     */
     public static Boolean ifBodyEmpty(String json) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return  mapper.readValue(json, new TypeReference<List<String>>() {

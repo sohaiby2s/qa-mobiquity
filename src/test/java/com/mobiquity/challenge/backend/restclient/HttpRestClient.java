@@ -72,10 +72,4 @@ public class HttpRestClient {
         this.statusCode = statusCode;
     }
 
-    public List<String> ifBodyIsEmpty() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return  mapper.readValue(getResponseBody().asString(), new TypeReference<List<String>>() {
-        });
-    }
-
 }
