@@ -52,3 +52,9 @@ mvn clean test
 A detailed cucumber jvm report is being generated after every execution on following path
 
 target/cucumber-JVM-reports/cucumber-html-reports/overview-features.html
+
+**CircleCI**
+This framework is also executed throgh CircleCi. After every push to the source branch CircleCi starts executing it.
+
+You can find the results of executions in following artifact location :
+target/cucumber-JVM-reports/cucumber-html-reports/overview-features.html
