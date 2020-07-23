@@ -1,4 +1,4 @@
-@test
+
 Feature: UserBlog
 
   As a blog user
@@ -37,7 +37,7 @@ Feature: UserBlog
     And Client calls the "GET" method of "/posts" endpoint by appending user id as parameter
     And User collects all posts against the user id from the JSON response
     Then Count of user's post should be 10
-
+  @test
   Scenario: Validate email address format on comments of each post
     Given Client calls the "GET" method of "/users" endpoint
     And User gets the JSON response from user list

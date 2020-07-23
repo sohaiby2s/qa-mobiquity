@@ -24,10 +24,11 @@ public class CommentSteps {
 
     @And("Client calls the {string} method of {string} endpoint by appending each post id as parameter")
     public void clientCallsTheMethodOfEndPointByAppendPosts(String method, String endPoint) throws JsonProcessingException {
-        for (int id : postsContext.getPostIds()) {
+        for(int id:postsContext.getPostIds()){
             httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint + "?postId=" + id);
             commentContext.parseJsonResponseOfComments();
         }
+
     }
 
     @Then("Email address on each comment should be in proper format")
