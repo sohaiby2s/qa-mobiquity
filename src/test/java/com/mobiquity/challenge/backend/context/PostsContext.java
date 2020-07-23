@@ -19,9 +19,12 @@ public class PostsContext extends CommonContext {
 
     private List<Post> posts;
     private List<Integer> postIds;
+    private HttpRestClient httpRestClient;
 
     @Autowired
-    private HttpRestClient httpRestClient;
+    public PostsContext(HttpRestClient httpRestClient) {
+        this.httpRestClient = httpRestClient;
+    }
 
     /**
      * This method is used to parse JSON string receiving as an API response

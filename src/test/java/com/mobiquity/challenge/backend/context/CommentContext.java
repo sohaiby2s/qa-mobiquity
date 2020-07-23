@@ -19,9 +19,12 @@ import java.util.stream.Collectors;
 public class CommentContext extends CommonContext {
 
     private List<Comment> comments = new ArrayList<>();
+    private HttpRestClient httpRestClient;
 
     @Autowired
-    private HttpRestClient httpRestClient;
+    public CommentContext(HttpRestClient httpRestClient) {
+        this.httpRestClient = httpRestClient;
+    }
 
     /**
      * This method is used to parse JSON string receiving as an API response

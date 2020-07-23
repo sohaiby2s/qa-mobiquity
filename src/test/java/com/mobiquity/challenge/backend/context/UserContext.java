@@ -18,9 +18,12 @@ public class UserContext extends CommonContext {
 
     private List<User> users;
     private int userId;
+    private HttpRestClient httpRestClient;
 
     @Autowired
-    private HttpRestClient httpRestClient;
+    public UserContext(HttpRestClient httpRestClient) {
+        this.httpRestClient = httpRestClient;
+    }
 
     /**
      * This method is used to parse JSON string receiving as an API response

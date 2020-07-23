@@ -1,11 +1,16 @@
 package com.mobiquity.challenge.backend.stepdefinitions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.http.Method;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class CommonSteps {
 
@@ -26,8 +31,11 @@ public class CommonSteps {
     }
 
     @Then("Api should return empty response")
-    public void apiShouldReturnEmptyList() {
-        Assert.assertEquals("Api response is not empty", httpRestClient.getResponseBody().asString(), "[]");
+    public void apiShouldReturnEmptyList() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<String> data = mapper.readValue(httpRestClient.getResponseBody().asString(), new TypeReference<List<String>>() {
+        });
+        Assert.assertTrue("Api response is not empty", data.isEmpty());
     }
 
 }
