@@ -13,18 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommentSteps {
 
-    @Autowired
-    private CommentContext commentContext;
+
+    private final CommentContext commentContext;
+    private final PostsContext postsContext;
+    private final HttpRestClient httpRestClient;
 
     @Autowired
-    private PostsContext postsContext;
+    public CommentSteps(CommentContext commentContext, PostsContext postsContext, HttpRestClient httpRestClient) {
+        this.commentContext = commentContext;
+        this.postsContext = postsContext;
+        this.httpRestClient = httpRestClient;
+    }
 
-    @Autowired
-    private HttpRestClient httpRestClient;
 
     @And("Client calls the {string} method of {string} endpoint by appending each {string} as parameter")
     public void clientCallsTheMethodOfEndPointByAppendPosts(String method, String endPoint, String paramValue) throws JsonProcessingException {
-        for (int id : postsContext.getPostIds()) {
+        for (Integer id : postsContext.getPostIds()) {
             httpRestClient.initRestAPI();
             httpRestClient.setQueryParam(paramValue, id);
             httpRestClient.sendHttpRequest(Method.valueOf(method), endPoint);
@@ -34,8 +38,8 @@ public class CommentSteps {
 
     @Then("Email address on each comment should be in proper format")
     public void emailAddressOnEachCommentShouldBeInProperFormat() {
-        Assert.assertTrue("Email Addresses are not in proper format: " + commentContext.getEmailAddress(),
-                commentContext.getEmailAddress().isEmpty());
+        Assert.assertTrue("Email Addresses are not in proper format: " + commentContext.getInvalidEmailAddresses(),
+                commentContext.getInvalidEmailAddresses().isEmpty());
     }
 
 }

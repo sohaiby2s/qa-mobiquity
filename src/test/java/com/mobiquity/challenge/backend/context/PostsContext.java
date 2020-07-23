@@ -19,7 +19,7 @@ public class PostsContext extends CommonContext {
 
     private List<Post> posts;
     private List<Integer> postIds;
-    private HttpRestClient httpRestClient;
+    private final HttpRestClient httpRestClient;
 
     @Autowired
     public PostsContext(HttpRestClient httpRestClient) {

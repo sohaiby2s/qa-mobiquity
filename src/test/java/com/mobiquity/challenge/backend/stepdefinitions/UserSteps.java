@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserSteps {
 
-    @Autowired
-    private UserContext userContext;
+    private final UserContext userContext;
 
+    @Autowired
+    public UserSteps(UserContext userContext) {
+        this.userContext = userContext;
+    }
 
     @Then("{string} user name found in user list")
     public void userNameFoundInUserData(String userName) {
@@ -21,7 +24,7 @@ public class UserSteps {
 
     @And("User fetch the id of user {string} from user list")
     public void userGetsTheIdOfAUser(String userName) {
-        userContext.setUserId(userName);
+        userContext.fetchUserIdByUserName(userName);
     }
 
     @When("User gets the JSON response from user list")

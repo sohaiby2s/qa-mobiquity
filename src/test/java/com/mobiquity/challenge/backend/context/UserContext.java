@@ -17,8 +17,8 @@ import java.util.List;
 public class UserContext extends CommonContext {
 
     private List<User> users;
-    private int userId;
-    private HttpRestClient httpRestClient;
+    private Integer userId;
+    private final HttpRestClient httpRestClient;
 
     @Autowired
     public UserContext(HttpRestClient httpRestClient) {
@@ -37,18 +37,18 @@ public class UserContext extends CommonContext {
      * This method checks if the user is found in the list of users
      */
     public boolean isUserFound(String userName) {
-        return users.stream().anyMatch(user -> user.getUsername().equalsIgnoreCase(userName));
+        return users.stream().anyMatch(user -> userName.equalsIgnoreCase(user.getUsername()));
     }
 
     /**
      * This method fetch the user id and saves it in the userId variable
      */
-    public void setUserId(String userName) {
+    public void fetchUserIdByUserName(String userName) {
         userId = users.stream().filter(user -> user.getUsername().equalsIgnoreCase(userName)).
                 findFirst().map(User::getId).get();
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

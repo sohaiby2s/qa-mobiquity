@@ -31,12 +31,5 @@ public abstract class CommonContext {
         return objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, className));
     }
 
-    /**
-     * This is method is used for checking email format
-     */
-    public Boolean checkEmailFormat(String email) {
-        String emailRegex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        return email.matches(emailRegex);
-    }
 
 }

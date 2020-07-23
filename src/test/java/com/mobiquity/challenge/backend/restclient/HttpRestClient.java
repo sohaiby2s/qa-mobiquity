@@ -1,12 +1,18 @@
 package com.mobiquity.challenge.backend.restclient;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiquity.challenge.common.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * HttpRestClient is use to call Rest Api and perform all the functions
@@ -19,6 +25,7 @@ public class HttpRestClient {
     private RequestSpecification requestSpecification;
     private ResponseBody responseBody;
     private Integer statusCode;
+    private Response response;
 
     public HttpRestClient() {
         RestAssured.baseURI = ConfigReader.API_URL;
@@ -32,7 +39,7 @@ public class HttpRestClient {
      * This method calls the Rest API
      */
     public void sendHttpRequest(Method method, String endpoint) {
-        Response response = requestSpecification.request(method, endpoint);
+        response = requestSpecification.request(method, endpoint);
         setResponseBody(response.getBody());
         setStatusCode(response.getStatusCode());
     }
@@ -63,6 +70,12 @@ public class HttpRestClient {
 
     private void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
+    }
+
+    public List<String> ifBodyIsEmpty() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return  mapper.readValue(getResponseBody().asString(), new TypeReference<List<String>>() {
+        });
     }
 
 }

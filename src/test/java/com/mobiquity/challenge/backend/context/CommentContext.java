@@ -3,6 +3,7 @@ package com.mobiquity.challenge.backend.context;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mobiquity.challenge.backend.model.Comment;
 import com.mobiquity.challenge.backend.restclient.HttpRestClient;
+import com.mobiquity.challenge.common.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class CommentContext extends CommonContext {
 
     private List<Comment> comments = new ArrayList<>();
-    private HttpRestClient httpRestClient;
+    private final HttpRestClient httpRestClient;
 
     @Autowired
     public CommentContext(HttpRestClient httpRestClient) {
@@ -36,10 +37,10 @@ public class CommentContext extends CommonContext {
     }
 
     /**
-     * This method is used for fetching all the email addresses form comments
+     * This method is used for fetching all the invalid email addresses form comments
      */
-    public List<String> getEmailAddress() {
-        return comments.stream().map(Comment::getEmail).filter(email -> !checkEmailFormat(email)).
+        public List<String> getInvalidEmailAddresses() {
+        return comments.stream().map(Comment::getEmail).filter(email -> !ValidationUtils.checkEmailFormat(email)).
                 collect(Collectors.toList());
     }
 

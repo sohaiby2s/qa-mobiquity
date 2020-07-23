@@ -12,14 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class PostsSteps {
 
-    @Autowired
-    private PostsContext postsContext;
+
+    private final PostsContext postsContext;
+    private final UserContext userContext;
+    private final HttpRestClient httpRestClient;
 
     @Autowired
-    private UserContext userContext;
-
-    @Autowired
-    private HttpRestClient httpRestClient;
+    public PostsSteps(PostsContext postsContext, UserContext userContext, HttpRestClient httpRestClient) {
+        this.postsContext = postsContext;
+        this.userContext = userContext;
+        this.httpRestClient = httpRestClient;
+    }
 
 
     @Then("Count of user's post should be {int}")

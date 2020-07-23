@@ -19,7 +19,7 @@ Feature: UserBlog
   Scenario: Validate api response when user calls the endpoint which does not exist
     When Client calls the "GET" method of "/test" endpoint
     Then Response code 404 is returned
-
+   @test
   Scenario: Validate api response when user provides wrong value in parameter
     When Client calls the "GET" method of "/posts?userId=12355" endpoint
     Then Api should return empty response
@@ -28,7 +28,6 @@ Feature: UserBlog
     Given Client calls the "GET" method of "/users" endpoint
     And User gets the JSON response from user list
     Then "Delphine" user name found in user list
-
 
   Scenario: Validate the count of user's posts
     Given Client calls the "GET" method of "/users" endpoint
